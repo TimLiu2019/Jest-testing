@@ -46,3 +46,16 @@ describe("getCurrencies", () => {
     expect(result).toEqual(expect.arrayContaining(["EUR", "USD", "CAD"]));
   });
 });
+
+describe("getProduct", () => {
+  it("Should return the product with given id", () => {
+    const result = lib.getProduct(1);
+    // should have the same items, if result has another like category, itl fail
+    expect(result).toEqual({ id: 1, price: 10 });
+
+    // if have these two items, fine
+    expect(result).toMatchObject({ id: 1, price: 10 });
+
+    expect(result).toHaveProperty('id', 1);
+  });
+});
