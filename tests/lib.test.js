@@ -20,6 +20,29 @@ describe("absolute", () => {
 describe("greet", () => {
   it("should return the greeting message", () => {
     const result = lib.greet("Tom");
-    expect(result).toContain('Tom');
+    expect(result).toContain("Tom");
+  });
+});
+
+describe("getCurrencies", () => {
+  it("Should return supported currencies", () => {
+    const result = lib.getCurrencies();
+
+    // too general
+    expect(result).toBeDefined();
+    expect(result).not.toBeNull();
+
+    // too specific
+    expect(result[0]).toBe("USD");
+    expect(result[1]).toBe("CAD");
+    expect(result[2]).toBe("EUR");
+
+    // proper way
+    expect(result).toContain("USD");
+    expect(result).toContain("CAD");
+    expect(result).toContain("EUR");
+
+    // IDEAL WAY
+    expect(result).toEqual(expect.arrayContaining(["EUR", "USD", "CAD"]));
   });
 });
